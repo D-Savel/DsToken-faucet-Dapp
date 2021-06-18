@@ -1,4 +1,4 @@
-export const DsTokenAddress = '0xe6300dfDbC1199A8cA704851ec5a294b2988898c'
+export const DsTokenAddress = '0xBf29D23B3A40EeE123DC7521076695ceA23E1887'
 // Network : kovan
 
 export const DsTokenAbi = [

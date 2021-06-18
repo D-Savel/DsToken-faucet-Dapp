@@ -1,42 +1,21 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 import {
-  Alert,
-  AlertIcon,
   Input,
   InputLeftAddon,
-  InputRightElement,
-  InputGroup,
+  Center,
   Button,
-  Flex,
-  Spacer,
   Stack,
-  Heading,
   Text,
   HStack,
-  VStack,
-  Spinner,
-  useToast,
-  useDisclosure,
+  InputGroup,
+  Heading
 } from '@chakra-ui/react'
-import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-} from '@chakra-ui/react'
-import { Web3Context } from 'web3-hooks'
+
 import { ethers } from 'ethers'
 import { DsTokenContext } from '../App'
-import { FaucetContext } from '../App'
 
 function DsTokenUtils() {
-  const [web3State] = useContext(Web3Context)
   const dsToken = useContext(DsTokenContext)
-  const [tokenOwner, setTokenOwner] = useState(ethers.constants.AddressZero)
-  const [ethBalance, setEthBalance] = useState(0)
   const [utilsTokenBalance, setUtilsTokenBalance] = useState(0)
   const [utilsTotalSupply, setUtilsTotalSupply] = useState('_')
   const [utilsName, setUtilsName] = useState('')
@@ -47,9 +26,8 @@ function DsTokenUtils() {
   const [utilsAddress, setUtilsAddress] = useState(ethers.constants.AddressZero)
   const [ownerAddress, setOwnerAddress] = useState(ethers.constants.AddressZero)
   const [spenderAddress, setSpenderAddress] = useState(ethers.constants.AddressZero)
-  const [ethToSend, setEthToSend] = useState(0)
   const [isLoading, setIsLoading] = useState(false)
-  const toast = useToast()
+
 
   const handleClickGetName = async () => {
     try {
@@ -99,7 +77,7 @@ function DsTokenUtils() {
     }
   }
 
-  const handleClickGetBalanceOf = async () => {
+  const handleClickGetTokenBalanceOf = async () => {
     try {
       setIsLoading(true)
       setUtilsAddress(provAddress)
@@ -125,9 +103,11 @@ function DsTokenUtils() {
   }
 
   return (
-    <Stack spacing={4}>
-
-      <HStack>
+    <Stack mx="2" spacing={4}>
+      <Center border="1px" borderRadius="lg" borderColor="dark" bg="blue" w="600px" color="white" mb="1" p="2">
+        <Heading size="xl" >DsToken Faucet</Heading>
+      </Center>
+      <HStack >
         <Button
           isLoading={isLoading}
           loadingText="Get Balance"
@@ -140,7 +120,6 @@ function DsTokenUtils() {
       <HStack>
         <Text as="b" fontSize="20">Token name : {utilsName}</Text>)
       </HStack>
-
       <HStack>
         <Button
           isLoading={isLoading}
@@ -214,7 +193,7 @@ function DsTokenUtils() {
           isLoading={isLoading}
           loadingText="Get Balance"
           colorScheme="blue"
-          onClick={handleClickGetBalanceOf}
+          onClick={handleClickGetTokenBalanceOf}
         >
           Get Tokens Balance
         </Button>

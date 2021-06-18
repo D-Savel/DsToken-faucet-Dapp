@@ -1,4 +1,5 @@
-export const FaucetAddress = '0xC581402eb71C9f0a3e9b8c1B578116D9264C9ACd'
+export const FaucetAddress = '0x53F44A6aCA141baA8f4CE24aCe5a4c17678cbEAF'
+
 // Network : kovan
 
 export const FaucetAbi = [

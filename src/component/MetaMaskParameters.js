@@ -5,7 +5,7 @@ function MetaMaskParameters() {
   const [web3State] = useContext(Web3Context)
   return (
     <div className=" d-flex flex-column align-items-start justify-content-center border border-dark rounded-3 col-5">
-      <div className="py-1">
+      <div className="pb-4">
         <strong className="fs-4">MetaMask</strong>
         <button type="button" className="btn btn-light border-secondary m-2">is installed{' '}
           {web3State.isMetaMask ? <span className="badge rounded-pill bg-success"> {' '}</span>
