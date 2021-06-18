@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import Dapp from './component/Dapp'
+import { useContract } from 'web3-hooks'
+import {
+  DsTokenAddress,
+  DsTokenAbi,
+} from './contracts/DsToken'
+import {
+  FaucetAddress,
+  FaucetAbi,
+} from './contracts/Faucet'
+
+export const DsTokenContext = React.createContext(null)
+export const FaucetContext = React.createContext(null)
 
 function App() {
+  const dsToken = useContract(DsTokenAddress, DsTokenAbi)
+  const faucet = useContract(FaucetAddress, FaucetAbi)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <FaucetContext.Provider value={faucet}>
+        <DsTokenContext.Provider value={dsToken}>
+          <Dapp />
+        </DsTokenContext.Provider>
+      </FaucetContext.Provider>
+    </>
+  )
 }
 
 export default App;
+
+// <DsTokenContext.Provider value={dsToken}>
